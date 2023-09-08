@@ -1,0 +1,26 @@
+#----Initialization----#
+
+stages:
+    - build
+    - test
+
+#----Build Stage----#
+
+build:
+    stage: build
+    tags:
+        - ugrad
+    script:
+        - cd group11_spring_boot 
+        - mvn clean package -DskipTests=true
+    artifacts:
+        paths:
+            - /target/*.jar
+#----Test Stage----#   
+test:
+    stage: test
+    tags:
+        - ugrad
+    script:
+        - cd group11_spring_boot
+        - mvn clean verify
